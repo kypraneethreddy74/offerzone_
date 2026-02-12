@@ -192,7 +192,7 @@ class SecurityUtils:
         return {
             "httponly": True,
             "secure": SecurityConfig.COOKIE_SECURE,
-            "samesite": "lax",
+            "samesite": "none" if SecurityConfig.COOKIE_SECURE else "lax",
             "max_age": max_age,
-            "path": "/" if is_access_token else "/auth"
+            "path": "/"
         }
