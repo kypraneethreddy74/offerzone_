@@ -15,3 +15,5 @@ transfer_recent.py
 local_backup.sql
 *.sql
 
+ecommerce-scraper/backend/db_backup/backup.sql
+*.sql
