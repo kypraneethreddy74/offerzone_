@@ -1,0 +1,88 @@
+.offerzone-footer {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  padding: 80px 8% 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px;
+}
+
+.footer-brand h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-brand p {
+  color: #cbd5f5;
+  margin: 16px 0 24px;
+  line-height: 1.6;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-socials a {
+  background: rgba(255,255,255,0.1);
+  padding: 12px;
+  border-radius: 50%;
+  color: white;
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  background: #6366f1;
+  transform: translateY(-4px);
+}
+
+.offerzone-footer h4 {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+.offerzone-footer a {
+  display: block;
+  margin-bottom: 10px;
+  color: #cbd5f5;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.offerzone-footer a:hover {
+  color: white;
+  transform: translateX(4px);
+}
+
+.trust-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+  color: #cbd5f5;
+}
+
+.footer-bottom {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

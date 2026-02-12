@@ -1,0 +1,3 @@
+# Frontend .gitignore
+node_modules/
+.env
