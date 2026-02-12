@@ -1,5 +1,26 @@
-# Backend .gitignore
+# Dependencies
+node_modules/
+
+# Environment
+.env
 venv/
 __pycache__/
-.env
 *.pyc
+
+# IDE
+.vs/
+
+# Database
+*.sql
+local_backup.sql
+
+# Transfer scripts
+transfer_data.py
+transfer_essential.py
+transfer_fix.py
+transfer_main.py
+transfer_recent.py
+
+# OS files
+.DS_Store
+Thumbs.db

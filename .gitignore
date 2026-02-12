@@ -5,3 +5,13 @@ __pycache__/
 venv/
 .vs/
 *.pycecommerce-scraper/backend/db_backup/backup.sql
+
+# Transfer scripts (not needed in repo)
+transfer_data.py
+transfer_essential.py
+transfer_fix.py
+transfer_main.py
+transfer_recent.py
+local_backup.sql
+*.sql
+
