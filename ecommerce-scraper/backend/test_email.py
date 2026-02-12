@@ -1,15 +1,32 @@
-# backend/test_email.py
-from email_service import EmailService
+"""
+Quick Email Test
+"""
+import smtplib
+from email.mime.text import MIMEText
 
-# Test sending email directly
-result = EmailService.send_price_alert_email(
-    to_email="kpraneethreddy333@gmail.com",
-    user_name="Test User",
-    product_name="Sony Bravia 55 inch 4K TV",
-    model_id="TEST123",
-    target_price=55000,
-    current_price=49999,
-    platform="Amazon"
-)
+SMTP_HOST = "smtp.gmail.com"
+SMTP_PORT = 587
+SMTP_USER = "kpraneethreddy111@gmail.com"
+SMTP_PASSWORD = "batceyssnrkntafa"
+TO_EMAIL = "kummethap74@gmail.com"
 
-print(f"Email sent: {result}")
+try:
+    print("🚀 Testing email...")
+    
+    msg = MIMEText("This is a test email from OfferZone!")
+    msg["Subject"] = "OfferZone Test Email"
+    msg["From"] = SMTP_USER
+    msg["To"] = TO_EMAIL
+    
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+        server.starttls()
+        print("✅ TLS connected")
+        
+        server.login(SMTP_USER, SMTP_PASSWORD)
+        print("✅ Login successful")
+        
+        server.sendmail(SMTP_USER, TO_EMAIL, msg.as_string())
+        print(f"✅ Email sent to {TO_EMAIL}!")
+        
+except Exception as e:
+    print(f"❌ Error: {str(e)}")
