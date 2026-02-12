@@ -34,42 +34,63 @@ class EmailService:
     @staticmethod
     def _send_email(to_email: str, subject: str, html_content: str, text_content: str = "") -> bool:
         """
-        Send an email using SMTP
-        Returns True if successful, False otherwise
+        Send an email using Resend API (works on Render)
+        Falls back to SMTP for local development
         """
         if not EmailConfig.EMAIL_ENABLED:
             print(f"📧 [DEV MODE] Email would be sent to: {to_email}")
             print(f"   Subject: {subject}")
-            print(f"   Content: {text_content[:200]}...")
             return True
-        
+
+        # Try Resend API first (for production/Render)
+        resend_api_key = os.getenv("RESEND_API_KEY", "")
+        if resend_api_key:
+            try:
+                import resend
+                resend.api_key = resend_api_key
+                
+                params = {
+                    "from": f"{EmailConfig.FROM_NAME} <onboarding@resend.dev>",
+                    "to": [to_email],
+                    "subject": subject,
+                    "html": html_content,
+                }
+                
+                result = resend.Emails.send(params)
+                print(f"✅ Email sent via Resend to: {to_email}")
+                return True
+            except Exception as e:
+                print(f"❌ Resend failed: {str(e)}")
+                return False
+
+        # Fallback to SMTP (for local development)
         if not EmailConfig.SMTP_USER or not EmailConfig.SMTP_PASSWORD:
             print("⚠️ Email credentials not configured")
             return False
-        
+
         try:
-            # Create message
+            from email.mime.text import MIMEText
+            from email.mime.multipart import MIMEMultipart
+            
             msg = MIMEMultipart("alternative")
             msg["Subject"] = subject
             msg["From"] = f"{EmailConfig.FROM_NAME} <{EmailConfig.FROM_EMAIL}>"
             msg["To"] = to_email
-            
-            # Attach both plain text and HTML versions
+
             if text_content:
                 msg.attach(MIMEText(text_content, "plain"))
             msg.attach(MIMEText(html_content, "html"))
-            
-            # Send email
+
             with smtplib.SMTP(EmailConfig.SMTP_HOST, EmailConfig.SMTP_PORT) as server:
                 server.starttls()
                 server.login(EmailConfig.SMTP_USER, EmailConfig.SMTP_PASSWORD)
                 server.sendmail(EmailConfig.FROM_EMAIL, to_email, msg.as_string())
-            
-            print(f"✅ Email sent successfully to: {to_email}")
+
+            print(f"✅ Email sent via SMTP to: {to_email}")
             return True
-            
+
         except Exception as e:
-            print(f"❌ Failed to send email to {to_email}: {str(e)}")
+            print(f"❌ SMTP failed: {str(e)}")
             return False
     
     @classmethod
