@@ -1,0 +1,6 @@
+npm install
+2️Install Bootstrap Icons
+npm install bootstrap-icons
+npm install react-plotly.js plotly.js
+npm install recharts 
+npm install recharts react-router-dom
