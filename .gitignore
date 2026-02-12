@@ -4,4 +4,4 @@ node_modules/
 __pycache__/
 venv/
 .vs/
-*.pyc
+*.pycecommerce-scraper/backend/db_backup/backup.sql
