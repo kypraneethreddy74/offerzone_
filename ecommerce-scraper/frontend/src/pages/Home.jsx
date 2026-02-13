@@ -43,7 +43,7 @@ export default function Home() {
       name: "Priya Sharma",
       role: "Tech Enthusiast",
       image: "https://randomuser.me/api/portraits/women/44.jpg",
-      text: "Saved ₹15,000 on my new MacBook! OfferZone showed me the best time to buy.",
+      text: "Saved ₹15,000 on my new Sony Bravia! OfferZone showed me the best time to buy.",
       rating: 5
     },
     {
@@ -177,7 +177,7 @@ export default function Home() {
               <BellRing size={20} className="alert-icon" />
               <div className="alert-content">
                 <span className="alert-title">Price Drop Alert!</span>
-                <span className="alert-text">MacBook Pro dropped by 12%</span>
+                <span className="alert-text">Sony Bravia dropped by 12%</span>
               </div>
             </div>
 
